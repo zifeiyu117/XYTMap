@@ -9,16 +9,17 @@
 import UIKit
 import SWRevealViewController
 
-class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate {
+class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMapNaviWalkManagerDelegate {
     
     var mapView : MAMapView!
     var search : AMapSearchAPI!
     var pin:MyPinAnnotation!
     var pinView :MAAnnotationView!
     var nearBySearch = true
+    var start,end : CLLocationCoordinate2D!
+    var walkManager:AMapNaviWalkManager!
     
     
-
     @IBOutlet weak var panelView: UIView!
     
     
@@ -39,9 +40,14 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate {
         mapView.showsUserLocation=true
         mapView.userTrackingMode = .follow
         
+        walkManager=AMapNaviWalkManager()
+        walkManager.delegate=self
+        
      
         self.view.addSubview(mapView)
         mapView.delegate=self
+        
+        
         
 
        view.bringSubview(toFront: panelView)
@@ -75,6 +81,7 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate {
     
     //MARK:- 私有方法
     @objc func searchBikeNearby()  {
+        nearBySearch=true
         searchCustomLocation(center: mapView.userLocation.coordinate)
     }
     func searchCustomLocation(center:CLLocationCoordinate2D) {
@@ -190,6 +197,48 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate {
                 
             }, completion: nil)
         }
+    }
+    
+    func mapView(_ mapView: MAMapView!, didSelect view: MAAnnotationView!) {
+        self.start = pin.coordinate
+        self.end = view.annotation.coordinate
+        
+        let startPoint = AMapNaviPoint.location(withLatitude: CGFloat(self.start.latitude), longitude: CGFloat(self.start.longitude))!
+        let endPoint = AMapNaviPoint.location(withLatitude: CGFloat(self.end.latitude), longitude: CGFloat(self.end.longitude))!
+        walkManager.calculateWalkRoute(withStart: [startPoint], end: [endPoint])
+        
+    }
+    
+    func mapView(_ mapView: MAMapView!, rendererFor overlay: MAOverlay!) -> MAOverlayRenderer! {
+        if overlay is MAPolyline {
+            pin.isLockedToScreen=false
+            mapView.visibleMapRect=overlay.boundingMapRect
+            let render = MAPolylineRenderer(overlay: overlay)
+            render?.lineWidth=8.0
+            render?.strokeColor=UIColor.blue
+            return render
+
+        }
+        return nil
+    }
+    
+ 
+    
+    //MARK:- AMapNaviWalkManagerDelegate 导航的代理
+    
+    func walkManager(onCalculateRouteSuccess walkManager: AMapNaviWalkManager) {
+        mapView.removeOverlays(mapView.overlays)
+        var coordinates = walkManager.naviRoute!.routeCoordinates!.map{
+            return CLLocationCoordinate2D(latitude: CLLocationDegrees($0.latitude), longitude: CLLocationDegrees($0.longitude))
+        }
+        
+        let polyline = MAPolyline(coordinates: &coordinates, count: UInt(coordinates.count))
+        mapView.add(polyline)
+        
+    }
+    
+    func walkManager(_ walkManager: AMapNaviWalkManager, onCalculateRouteFailure error: Error) {
+        print("计算失败")
     }
     
 }
