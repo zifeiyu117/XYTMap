@@ -8,6 +8,7 @@
 
 import UIKit
 import SWRevealViewController
+import FTIndicator
 
 class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMapNaviWalkManagerDelegate {
     
@@ -48,12 +49,11 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
         mapView.delegate=self
         
         
-        
-
        view.bringSubview(toFront: panelView)
         let item = UIBarButtonItem.init(title:"返回", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = item
-        
+    
+    
         self.navigationItem.titleView=UIImageView.init(image: UIImage.init(named: "Login_Logo"))
         self.navigationItem.leftBarButtonItem?.image?=(UIImage.init(named: "user_center_icon")?.withRenderingMode(.alwaysOriginal))!
         self.navigationItem.rightBarButtonItem?.image?=UIImage.init(named: "blue_bar_message_icon")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
@@ -64,12 +64,7 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
             view.addGestureRecognizer(revealVC.panGestureRecognizer())
             
         }
-        let delay = DispatchTime.now() + DispatchTimeInterval.seconds(2)
-        DispatchQueue.main.asyncAfter(deadline: delay) {
-            self.searchCustomLocation(center: self.mapView.userLocation.coordinate)
-        }
 
-      
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -87,7 +82,7 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
     func searchCustomLocation(center:CLLocationCoordinate2D) {
         let request = AMapPOIAroundSearchRequest()
         request.location=AMapGeoPoint.location(withLatitude: CGFloat(center.latitude), longitude: CGFloat(center.longitude))
-        request.keywords="餐馆"
+        request.keywords="餐馆|酒店"
         request.radius=500
         request.requireExtension=true
         search = AMapSearchAPI()
@@ -100,22 +95,21 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
     //MARK:- AMapSearchDelegate
     //搜索周边完成后的处理
     func onPOISearchDone(_ request: AMapPOISearchBaseRequest!, response: AMapPOISearchResponse!) {
-        
-        
         guard response.count>0 else {
             NSLog( "周边没有小黄车")
             return
         }
-        
+
         var annotations:[MAAnnotation]=[]
         annotations = response.pois.map{
             let annotation = MAPointAnnotation()
             annotation.coordinate=CLLocationCoordinate2D(latitude: CLLocationDegrees($0.location.latitude), longitude: CLLocationDegrees($0.location.longitude))
-            if $0.distance<200{
+            //根据类型判断是否为小黄车和红包车
+            if $0.type.contains("餐饮服务"){
+                annotation.title="正常可用"
+            }else{
                 annotation.title="红包车"
                 annotation.subtitle="骑行10分钟可获取红包车"
-            }else{
-                annotation.title="正常可用"
             }
             return annotation
             
@@ -127,6 +121,32 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
             nearBySearch = !nearBySearch
         }
     }
+    
+    func onRouteSearchDone(_ request: AMapRouteSearchBaseRequest!, response: AMapRouteSearchResponse!) {
+        
+        if response == nil {
+            return;
+        }else{
+           let path = response.route.paths[0]
+           let walkTime = path.duration/60
+            var timeDesc = "1分钟以内"
+            if walkTime>0 {
+                timeDesc=walkTime.description+"分钟"
+            }
+            let hintTitle = "步行"+timeDesc
+            let hintSubtile = "距离"+(path.distance.description)+"米"
+            FTIndicator.setIndicatorStyle(.dark)
+            FTIndicator.showNotification(with: #imageLiteral(resourceName: "clock"), title: hintTitle, message: hintSubtile)
+
+            if response.count > 0 {
+                mapView.removeOverlays(mapView.overlays)
+              let pathPolylines = XYTTool.init().polylines(for: path)
+                mapView.addOverlays(pathPolylines)
+            }
+        }
+       
+    }
+    
     //MARK:- MAMapViewDelegate
     func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
         if annotation is MAUserLocation {
@@ -165,6 +185,8 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
         pin.isLockedToScreen=true
         mapView.addAnnotation(pin)
         mapView.showAnnotations([pin], animated: true)
+        self.searchCustomLocation(center: self.mapView.userLocation.coordinate)
+
     }
     //用户移动地图的 交互
     func mapView(_ mapView: MAMapView!, mapDidMoveByUser wasUserAction: Bool) {
@@ -202,10 +224,10 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
     func mapView(_ mapView: MAMapView!, didSelect view: MAAnnotationView!) {
         self.start = pin.coordinate
         self.end = view.annotation.coordinate
-        
-        let startPoint = AMapNaviPoint.location(withLatitude: CGFloat(self.start.latitude), longitude: CGFloat(self.start.longitude))!
-        let endPoint = AMapNaviPoint.location(withLatitude: CGFloat(self.end.latitude), longitude: CGFloat(self.end.longitude))!
-        walkManager.calculateWalkRoute(withStart: [startPoint], end: [endPoint])
+        let navi:AMapWalkingRouteSearchRequest = AMapWalkingRouteSearchRequest()
+       navi.origin=AMapGeoPoint.location(withLatitude: CGFloat(self.start.latitude), longitude:  CGFloat(self.start.longitude))
+        navi.destination=AMapGeoPoint.location(withLatitude: CGFloat(self.end.latitude), longitude:  CGFloat(self.start.longitude))
+        self.search.aMapWalkingRouteSearch(navi)
         
     }
     
@@ -216,6 +238,8 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
             let render = MAPolylineRenderer(overlay: overlay)
             render?.lineWidth=8.0
             render?.strokeColor=UIColor.blue
+            render?.lineJoinType=kMALineJoinRound
+            render?.lineCapType=kMALineCapRound
             return render
 
         }
@@ -225,21 +249,30 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
  
     
     //MARK:- AMapNaviWalkManagerDelegate 导航的代理
-    
-    func walkManager(onCalculateRouteSuccess walkManager: AMapNaviWalkManager) {
-        mapView.removeOverlays(mapView.overlays)
-        var coordinates = walkManager.naviRoute!.routeCoordinates!.map{
-            return CLLocationCoordinate2D(latitude: CLLocationDegrees($0.latitude), longitude: CLLocationDegrees($0.longitude))
-        }
-        
-        let polyline = MAPolyline(coordinates: &coordinates, count: UInt(coordinates.count))
-        mapView.add(polyline)
-        
-    }
-    
-    func walkManager(_ walkManager: AMapNaviWalkManager, onCalculateRouteFailure error: Error) {
-        print("计算失败")
-    }
+//
+//    func walkManager(onCalculateRouteSuccess walkManager: AMapNaviWalkManager) {
+//        mapView.removeOverlays(mapView.overlays)
+//        var coordinates = walkManager.naviRoute!.routeCoordinates!.map{
+//            return CLLocationCoordinate2D(latitude: CLLocationDegrees($0.latitude), longitude: CLLocationDegrees($0.longitude))
+//        }
+//
+//        let polyline = MAPolyline(coordinates: &coordinates, count: UInt(coordinates.count))
+//        mapView.add(polyline)
+//        let walkTime = (walkManager.naviRoute?.routeTime)!/60
+//        var timeDesc = "1分钟以内"
+//        if walkTime>0 {
+//            timeDesc=walkTime.description+"分钟"
+//        }
+//        let hintTitle = "步行"+timeDesc
+//        let hintSubtile = "距离"+(walkManager.naviRoute?.routeLength.description)!+"米"
+//        FTIndicator.setIndicatorStyle(.dark)
+//        FTIndicator.showNotification(with: #imageLiteral(resourceName: "clock"), title: hintTitle, message: hintSubtile)
+//
+//    }
+//
+//    func walkManager(_ walkManager: AMapNaviWalkManager, onCalculateRouteFailure error: Error) {
+//        print("计算失败")
+//    }
     
 }
 

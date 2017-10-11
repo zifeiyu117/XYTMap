@@ -408,6 +408,92 @@
             </objects>
             <point key="canvasLocation" x="1304.8" y="1028.1859070464768"/>
         </scene>
+        <!--Scan View Controller-->
+        <scene sceneID="g4h-QS-UXU">
+            <objects>
+                <viewController modalPresentationStyle="formSheet" id="uC6-MF-Reu" customClass="XYTScanViewController" customModule="XYTOfo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TMW-ek-QiV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="166.5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xK6-RI-0nt" userLabel="PanelView">
+                                <rect key="frame" x="0.0" y="89" width="375" height="33.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="b1u-X6-K26">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="33.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WJQ-ON-1TC">
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="33.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gbi-mY-dsI">
+                                                        <rect key="frame" x="86.5" y="0.0" width="15" height="23"/>
+                                                        <state key="normal" image="inputBlikeNo">
+                                                            <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="inputBikeNo:" destination="uC6-MF-Reu" eventType="touchUpInside" id="AIP-nK-bae"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="手动输入车牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIf-bw-RCF">
+                                                        <rect key="frame" x="42" y="31" width="104" height="2.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="E00-kY-KKg">
+                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="33.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPc-Xk-EFQ">
+                                                        <rect key="frame" x="86.5" y="0.0" width="15" height="5"/>
+                                                        <state key="normal" image="btn_unenableTorch_w"/>
+                                                        <connections>
+                                                            <action selector="falshLight:" destination="uC6-MF-Reu" eventType="touchUpInside" id="VNM-an-D31"/>
+                                                            <action selector="inputBikeNo:" destination="uC6-MF-Reu" eventType="touchUpInside" id="5nL-PI-fZS"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="手电筒" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vvc-Pf-1Ef">
+                                                        <rect key="frame" x="68" y="13" width="52" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="b1u-X6-K26" secondAttribute="trailing" id="EMO-Jz-GTI"/>
+                                    <constraint firstAttribute="bottom" secondItem="b1u-X6-K26" secondAttribute="bottom" id="WP9-G6-rIJ"/>
+                                    <constraint firstItem="b1u-X6-K26" firstAttribute="top" secondItem="xK6-RI-0nt" secondAttribute="top" id="knj-6l-xRw"/>
+                                    <constraint firstItem="b1u-X6-K26" firstAttribute="leading" secondItem="xK6-RI-0nt" secondAttribute="leading" id="yhz-16-hfV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ezd-dA-dW8" firstAttribute="trailing" secondItem="xK6-RI-0nt" secondAttribute="trailing" id="Go0-jY-Kcv"/>
+                            <constraint firstItem="xK6-RI-0nt" firstAttribute="height" secondItem="TMW-ek-QiV" secondAttribute="height" multiplier="0.2" id="RCB-TX-Lm2"/>
+                            <constraint firstItem="Ezd-dA-dW8" firstAttribute="bottom" secondItem="xK6-RI-0nt" secondAttribute="bottom" id="aan-hW-N3L"/>
+                            <constraint firstItem="xK6-RI-0nt" firstAttribute="leading" secondItem="Ezd-dA-dW8" secondAttribute="leading" id="tau-3c-d7v"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ezd-dA-dW8"/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="flashBtn" destination="bPc-Xk-EFQ" id="gFR-WZ-DfE"/>
+                        <outlet property="panelView" destination="xK6-RI-0nt" id="nM9-ER-AlD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1ap-qO-Tb7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1204" y="1526"/>
+        </scene>
         <!--About View Controller-->
         <scene sceneID="koA-A2-eWS">
             <objects>
@@ -480,6 +566,9 @@
                                             <constraint firstAttribute="height" constant="100" id="etG-sE-NLt"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="start_button_bg_scan"/>
+                                        <connections>
+                                            <segue destination="uC6-MF-Reu" kind="show" id="a1o-U3-4HZ"/>
+                                        </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TXB-h1-R50">
                                         <rect key="frame" x="193" y="0.0" width="43" height="100"/>
@@ -529,8 +618,10 @@
         <image name="GrayCerTification_homePage" width="13" height="9"/>
         <image name="UserInfo_defaultIcon" width="80" height="80"/>
         <image name="blue_bar_message_icon" width="14" height="14"/>
+        <image name="btn_unenableTorch_w" width="15" height="23"/>
         <image name="icon_slide_coupon2" width="22" height="22"/>
         <image name="icon_slide_trip2" width="22" height="22"/>
+        <image name="inputBlikeNo" width="15" height="23"/>
         <image name="leftBottomBackgroundImage" width="40" height="40"/>
         <image name="leftBottomImage" width="40" height="40"/>
         <image name="rightBottomImage" width="40" height="40"/>

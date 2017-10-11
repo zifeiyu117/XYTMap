@@ -1,20 +1,20 @@
 
 //
-//  XYTContainerViewController.swift
+//  XYTBaseViewController.swift
 //  XYTOfo
 //
-//  Created by Farben on 2017/10/6.
+//  Created by Farben on 2017/10/8.
 //  Copyright © 2017年 Farben. All rights reserved.
 //
 
 import UIKit
 
-class XYTContainerViewController: XYTBaseViewController {
+class XYTBaseViewController: UIViewController {
 
- 
-    @IBOutlet weak var locationBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let item = UIBarButtonItem.init(title:"你好", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = item
 
         // Do any additional setup after loading the view.
     }
