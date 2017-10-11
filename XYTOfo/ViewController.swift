@@ -40,13 +40,10 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
         }
         
         mapView.zoomLevel=17
-
         mapView.showsUserLocation=true
         mapView.userTrackingMode = .follow
         
-      
-        
-
+  
         let item = UIBarButtonItem.init(title:"返回", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = item
     
@@ -176,6 +173,7 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
     }
     
     func mapInitComplete(_ mapView: MAMapView!) {
+       searchBikeNearby()
         view.bringSubview(toFront: panelView)
         pin = MyPinAnnotation()
         pin.coordinate=mapView.centerCoordinate
@@ -245,32 +243,6 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
     }
     
  
-    
-    //MARK:- AMapNaviWalkManagerDelegate 导航的代理
-//
-//    func walkManager(onCalculateRouteSuccess walkManager: AMapNaviWalkManager) {
-//        mapView.removeOverlays(mapView.overlays)
-//        var coordinates = walkManager.naviRoute!.routeCoordinates!.map{
-//            return CLLocationCoordinate2D(latitude: CLLocationDegrees($0.latitude), longitude: CLLocationDegrees($0.longitude))
-//        }
-//
-//        let polyline = MAPolyline(coordinates: &coordinates, count: UInt(coordinates.count))
-//        mapView.add(polyline)
-//        let walkTime = (walkManager.naviRoute?.routeTime)!/60
-//        var timeDesc = "1分钟以内"
-//        if walkTime>0 {
-//            timeDesc=walkTime.description+"分钟"
-//        }
-//        let hintTitle = "步行"+timeDesc
-//        let hintSubtile = "距离"+(walkManager.naviRoute?.routeLength.description)!+"米"
-//        FTIndicator.setIndicatorStyle(.dark)
-//        FTIndicator.showNotification(with: #imageLiteral(resourceName: "clock"), title: hintTitle, message: hintSubtile)
-//
-//    }
-//
-//    func walkManager(_ walkManager: AMapNaviWalkManager, onCalculateRouteFailure error: Error) {
-//        print("计算失败")
-//    }
     
 }
 
