@@ -26,6 +26,10 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor=UIColor.white
+        self.mapView = MAMapView(frame: self.view.bounds)
+        self.view.addSubview(mapView)
+        self.mapView.delegate=self
         let arrVC:NSArray = self.childViewControllers as NSArray
         for VC in arrVC {
             if VC is XYTContainerViewController{
@@ -35,21 +39,14 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
             }
         }
         
-        mapView = MAMapView(frame: self.view.bounds)
         mapView.zoomLevel=17
 
         mapView.showsUserLocation=true
         mapView.userTrackingMode = .follow
         
-        walkManager=AMapNaviWalkManager()
-        walkManager.delegate=self
+      
         
-     
-        self.view.addSubview(mapView)
-        mapView.delegate=self
-        
-        
-       view.bringSubview(toFront: panelView)
+
         let item = UIBarButtonItem.init(title:"返回", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = item
     
@@ -179,6 +176,7 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
     }
     
     func mapInitComplete(_ mapView: MAMapView!) {
+        view.bringSubview(toFront: panelView)
         pin = MyPinAnnotation()
         pin.coordinate=mapView.centerCoordinate
         pin.lockedScreenPoint=CGPoint(x: view.bounds.width/2, y: view.bounds.height/2)

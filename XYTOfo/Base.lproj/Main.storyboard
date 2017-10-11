@@ -50,7 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="476" y="124.58770614692655"/>
+            <point key="canvasLocation" x="694" y="138"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="CF3-L2-Nom">
@@ -170,7 +170,7 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_slide_coupon2" translatesAutoresizingMaskIntoConstraints="NO" id="Qj0-PD-GD3">
                                                             <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的行程" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubg-gq-JEs">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地图中心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubg-gq-JEs">
                                                             <rect key="frame" x="39" y="0.0" width="69.5" height="22"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -185,7 +185,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="tPX-nl-dEB" kind="custom" identifier="about" customClass="SWRevealViewControllerSeguePushController" id="uSG-fP-MVj"/>
+                                            <segue destination="B3s-Oe-PTE" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="3qI-Tj-L5P"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Rse-x9-Hhq">
@@ -201,7 +201,7 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_slide_trip2" translatesAutoresizingMaskIntoConstraints="NO" id="gnD-2M-2g2">
                                                             <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的钱包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1u-dn-d3t">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天天气" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1u-dn-d3t">
                                                             <rect key="frame" x="39" y="0.0" width="69.5" height="22"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -311,7 +311,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xAE-lp-eK8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="448.80000000000001" y="878.41079460269873"/>
+            <point key="canvasLocation" x="-209" y="1525"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="mPA-mP-Z8A">
@@ -359,7 +359,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wag-vm-Ot7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-506" y="125"/>
+            <point key="canvasLocation" x="-183" y="631"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="gbJ-V3-eAB">
@@ -378,7 +378,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l9k-Hb-SzP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-506" y="869"/>
+            <point key="canvasLocation" x="-1314" y="1343"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="hPp-tG-AsN">
@@ -494,42 +494,6 @@
             </objects>
             <point key="canvasLocation" x="1204" y="1526"/>
         </scene>
-        <!--About View Controller-->
-        <scene sceneID="koA-A2-eWS">
-            <objects>
-                <viewController id="LNB-DL-lAg" customClass="AboutViewController" customModule="XYTOfo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="NE8-MR-3Cb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.82690821869999998" blue="0.3164250428" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="nr1-Lb-cb0"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Uwt-Ct-ogf">
-                        <barButtonItem key="leftBarButtonItem" title="关闭" id="6lR-Xu-mJy"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rqr-Am-PKX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2929" y="899"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="YFg-gB-dQ2">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tPX-nl-dEB" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rA6-hm-1aS">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="LNB-DL-lAg" kind="relationship" relationship="rootViewController" id="Sal-zx-Q9e"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aI2-1i-dcL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2017.5999999999999" y="899.55022488755628"/>
-        </scene>
         <!--Container View Controller-->
         <scene sceneID="FuH-KL-1Mn">
             <objects>
@@ -629,4 +593,7 @@
         <image name="wallet_back_icon" width="18" height="18"/>
         <image name="whiteImage" width="375" height="125"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="3qI-Tj-L5P"/>
+    </inferredMetricsTieBreakers>
 </document>

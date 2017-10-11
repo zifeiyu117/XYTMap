@@ -1,36 +1,27 @@
 
 //
-//  AboutViewController.swift
+//  XYTRouteViewController.swift
 //  XYTOfo
 //
-//  Created by Farben on 2017/10/4.
+//  Created by Farben on 2017/10/11.
 //  Copyright © 2017年 Farben. All rights reserved.
 //
 
 import UIKit
-import SWRevealViewController
 
-class AboutViewController: UIViewController {
+class XYTRouteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let revealVC = revealViewController() {
-            revealVC.rearViewRevealWidth=280
-            navigationItem.leftBarButtonItem?.target=revealVC
-            navigationItem.leftBarButtonItem?.action = #selector(SWRevealViewController.revealToggle(_:))
-            view.addGestureRecognizer(revealVC.panGestureRecognizer())
-            
-        }
+        self.view.backgroundColor=UIColor.yellow;
         // Do any additional setup after loading the view.
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
 
     /*
     // MARK: - Navigation

@@ -17,6 +17,7 @@
 		9B287D401F812CE40077487E /* XYTWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B287D3F1F812CE40077487E /* XYTWebViewController.swift */; };
 		9B293AC01F8CBD0C008138A9 /* CodeScan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B293ABF1F8CBD0C008138A9 /* CodeScan.bundle */; };
 		9B293AC41F8DFBF6008138A9 /* XYTTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B293AC31F8DFBF6008138A9 /* XYTTool.m */; };
+		9B293ADC1F8E240C008138A9 /* XYTRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B293ADB1F8E240C008138A9 /* XYTRouteViewController.swift */; };
 		9B4A69CF1F81E45300B456F8 /* XTYTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A69CE1F81E45300B456F8 /* XTYTableViewController.swift */; };
 		9B7C6A951F8709F4004D166B /* XYTContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7C6A941F8709F4004D166B /* XYTContainerViewController.swift */; };
 		9B7C6A971F8761EF004D166B /* MyPinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7C6A961F8761EF004D166B /* MyPinAnnotation.swift */; };
@@ -62,6 +63,7 @@
 		9B293ABF1F8CBD0C008138A9 /* CodeScan.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CodeScan.bundle; sourceTree = "<group>"; };
 		9B293AC21F8DFBF6008138A9 /* XYTTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYTTool.h; sourceTree = "<group>"; };
 		9B293AC31F8DFBF6008138A9 /* XYTTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYTTool.m; sourceTree = "<group>"; };
+		9B293ADB1F8E240C008138A9 /* XYTRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XYTRouteViewController.swift; sourceTree = "<group>"; };
 		9B4A69CE1F81E45300B456F8 /* XTYTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTYTableViewController.swift; sourceTree = "<group>"; };
 		9B7C6A941F8709F4004D166B /* XYTContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XYTContainerViewController.swift; sourceTree = "<group>"; };
 		9B7C6A961F8761EF004D166B /* MyPinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPinAnnotation.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				9B7C6A941F8709F4004D166B /* XYTContainerViewController.swift */,
 				9B7C6A961F8761EF004D166B /* MyPinAnnotation.swift */,
 				9B7DC6221F8A07920003DAAD /* XYTScanViewController.swift */,
+				9B293ADB1F8E240C008138A9 /* XYTRouteViewController.swift */,
 				9B293AC21F8DFBF6008138A9 /* XYTTool.h */,
 				9B293AC31F8DFBF6008138A9 /* XYTTool.m */,
 				9B287D101F80CB940077487E /* Main.storyboard */,
@@ -389,6 +392,7 @@
 				9B7C6A951F8709F4004D166B /* XYTContainerViewController.swift in Sources */,
 				9B287D0F1F80CB940077487E /* ViewController.swift in Sources */,
 				9B287D0D1F80CB940077487E /* AppDelegate.swift in Sources */,
+				9B293ADC1F8E240C008138A9 /* XYTRouteViewController.swift in Sources */,
 				9B287D401F812CE40077487E /* XYTWebViewController.swift in Sources */,
 				9B7C6A971F8761EF004D166B /* MyPinAnnotation.swift in Sources */,
 				9B293AC41F8DFBF6008138A9 /* XYTTool.m in Sources */,
