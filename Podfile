@@ -1,4 +1,8 @@
 # Uncomment the next line to define a global platform for your project
+
+source 'https://git.coding.net/heyutao117/XYTFMSpecs.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
 platform :ios, '9.0'
 
 target 'XYTOfo' do
@@ -11,6 +15,8 @@ target 'XYTOfo' do
   pod "FTIndicator"
   pod "AMapSearch"
   pod "swiftScan"
+  pod "Alamofire"
+  pod "XYTNavigationBar"
 end
 
 

@@ -1,0 +1,6 @@
+framework module XYTNavigationBar {
+  umbrella header "XYTNavigationBar-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -50,7 +50,7 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
     
         self.navigationItem.titleView=UIImageView.init(image: UIImage.init(named: "Login_Logo"))
         self.navigationItem.leftBarButtonItem?.image?=(UIImage.init(named: "user_center_icon")?.withRenderingMode(.alwaysOriginal))!
-        self.navigationItem.rightBarButtonItem?.image?=UIImage.init(named: "blue_bar_message_icon")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        self.navigationItem.rightBarButtonItem?.image?=UIImage.init(named: "screenshot")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         if let revealVC = revealViewController() {
             revealVC.rearViewRevealWidth=280
             navigationItem.leftBarButtonItem?.target=revealVC
@@ -63,12 +63,19 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+      //MARK:- 私有方法
+    
+    @IBAction func screenShot(_ sender: Any) {
+        
+        let screenshotImage = self.mapView.takeSnapshot(in: CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height-64))
+        let screenshotVC = XYTScreeShotViewController()
+        screenshotVC.screenshotImage=screenshotImage
+        self.navigationController?.pushViewController(screenshotVC, animated: true)
+        
     }
     
-    //MARK:- 私有方法
+    
+  
     @objc func searchBikeNearby()  {
         nearBySearch=true
         searchCustomLocation(center: mapView.userLocation.coordinate)
