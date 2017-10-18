@@ -23,6 +23,7 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
     
     @IBOutlet weak var panelView: UIView!
     
+    @IBOutlet weak var weatherBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,8 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
         self.navigationItem.titleView=UIImageView.init(image: UIImage.init(named: "Login_Logo"))
         self.navigationItem.leftBarButtonItem?.image?=(UIImage.init(named: "user_center_icon")?.withRenderingMode(.alwaysOriginal))!
         self.navigationItem.rightBarButtonItem?.image?=UIImage.init(named: "screenshot")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+         self.weatherBtn.image=UIImage.init(named: "bw2")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        
         if let revealVC = revealViewController() {
             revealVC.rearViewRevealWidth=280
             navigationItem.leftBarButtonItem?.target=revealVC
@@ -74,6 +77,13 @@ class ViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate,AMap
         
     }
     
+    
+    
+    
+    @IBAction func lookUpWearher(_ sender: Any) {
+        
+        self.navigationController?.pushViewController(XYTWeatherViewController(), animated: true)
+    }
     
   
     @objc func searchBikeNearby()  {

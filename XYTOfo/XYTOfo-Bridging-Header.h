@@ -8,6 +8,9 @@
 #import <AMapNaviKit/AMapNaviKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
 #import "XYTTool.h"
+#import "XYTWeatherViewController.h"
+
+
 
 
 

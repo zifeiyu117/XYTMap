@@ -16,6 +16,7 @@ class XTYTableViewController: UITableViewController {
         self.tableView.separatorStyle=UITableViewCellSeparatorStyle.none
         tableView.rowHeight=UITableViewAutomaticDimension
         tableView.estimatedRowHeight=100
+        
     }
 
     override func didReceiveMemoryWarning() {

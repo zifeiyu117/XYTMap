@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         AMapServices.shared().apiKey="9b766fd6b7a19cb50a40854dc58e6d91"
         AMapServices.shared().enableHTTPS=true
-
+        
+        
         return true
     }
 
